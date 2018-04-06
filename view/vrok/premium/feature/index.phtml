@@ -1,0 +1,57 @@
+<h3><?php echo $this->translate('view.premium.feature.index.heading'); ?></h3>
+<p>
+    <?php echo $this->translate('view.premium.feature.index.intro'); ?>
+</p>
+<div class="flash-messenger">
+    <?php $this->flashMessenger()->renderAll(); ?>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('view.premium.feature.name'); ?>
+            <th><?php echo $this->translate('view.premium.feature.candidates'); ?>
+            <th><?php echo $this->translate('view.premium.feature.defaults'); ?>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($this->features as $feature => $config) : ?>
+        <tr>
+            <td>
+                <?php echo $this->translate('feature.'.$feature); ?>
+            </td>
+            <td>
+            <?php
+                $candidates = array_map(function($candidate) {
+                    return $this->translate($candidate);
+                }, $config['candidates']);
+
+                echo implode(', ', $candidates);
+            ?>
+            </td>
+            <td class="hoverable">
+                <a class="hoverable" href="<?php echo $this->url('premium/feature/defaults', ['name' => $feature]); ?>" title="<?php echo $this->translate('view.premium.feature.gotoDefaults'); ?>">
+                    <?php
+                    echo $this->translate('view.premium.feature.active').': '
+                        .$this->translate($config['defaults']['active'] ? 'view.yes' : 'view.no');
+
+                    $params = [];
+                    foreach ($config['defaults'] as $param => $value) {
+                        if ($param == 'active') {
+                            continue;
+                        }
+
+                        $params[] = $this->translate('feature.'.$feature.'.'.$param)
+                                .': '.$value;
+                    }
+                    count($params) && print '<br />';
+                    echo implode ('<br />', $params);
+                    ?>
+                    <small class="hover-action"><br /><span class="glyphicon glyphicon-pencil"></span></small>
+                </a>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+    </tbody>
+</table>

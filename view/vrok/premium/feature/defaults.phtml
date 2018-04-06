@@ -1,0 +1,15 @@
+<h3><?php echo $this->translate('view.premium.feature.defaults.heading'); ?></h3>
+<div class="flash-messenger">
+    <?php echo $this->flashMessenger()->renderAll(); ?>
+</div>
+<p>
+    <?php echo $this->translate('view.premium.feature.defaults.intro'); ?>
+</p>
+
+<div class="col-md-5">
+    <?php
+    $this->form->setAttribute('action', $this->url('premium/feature/defaults',
+        ['name' => $this->feature]));
+    echo $this->formDecorator($this->form);
+    ?>
+</div>
