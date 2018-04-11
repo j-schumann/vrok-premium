@@ -26,12 +26,12 @@ before_install:
   - composer self-update
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer require --dev --no-update satooshi/php-coveralls ; fi
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-  - cp test/TestConfig.travis.php test/TestConfig.local.php
-  - ./vendor/bin/doctrine-module orm:schema-tool:update --force
 
 install:
   - travis_retry composer install $COMPOSER_ARGS
   - composer info
+  - cp test/TestConfig.travis.php test/TestConfig.local.php
+  - ./vendor/bin/doctrine-module orm:schema-tool:update --force
 
 script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage ; else composer test ; fi

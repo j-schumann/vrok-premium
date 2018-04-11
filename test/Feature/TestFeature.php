@@ -30,7 +30,7 @@ class TestFeature implements FeatureInterface
             throw new \RuntimeException('As you wish!');
         }
 
-        if (!$params['active']) {
+        if (! $params['active']) {
             $owner->setDisplayName('inactive');
             return;
         }
