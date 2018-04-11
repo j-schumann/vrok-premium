@@ -439,7 +439,7 @@ class FeatureManager
     {
         $this->featureConfig[$feature] = [
             'service'    => $service,
-            'candidates' => $classes,
+            'candidates' => array_unique($classes),
         ];
     }
 

@@ -46,7 +46,6 @@ class Bootstrap
                 'module_paths' => explode(PATH_SEPARATOR, $zf2ModulePaths),
             ],
         ];
-
         $config = ArrayUtils::merge($baseConfig, $testConfig);
 
         // ensure Module::onBootstrap is called
