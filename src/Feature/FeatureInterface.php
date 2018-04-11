@@ -65,5 +65,5 @@ interface FeatureInterface
      * @param object $owner
      * @param array $params
      */
-    public function updateOwner(/*object*/ $owner, array $params);
+    public function updateOwner(object $owner, array $params);
 }

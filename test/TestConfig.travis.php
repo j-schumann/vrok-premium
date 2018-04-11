@@ -1,26 +1,14 @@
 <?php
 return [
     'doctrine' => [
-        /*
-         * SQLite fails with weird behaviour, reusing old records that were
-         * previously deleted by FeatureManagerTest::setUp()
-         */
-        /*'connection' => [
-            'orm_default' => [
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
-                'params'      => [
-                    'memory' => true,
-                ],
-            ],
-        ],/**/
         'connection' => [
             'orm_default' => [
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params'      => [
-                    'host'          => 'mysql',
+                    'host'          => '127.0.0.1',
                     'port'          => '3306',
-                    'user'          => 'test',
-                    'password'      => 'test',
+                    'user'          => 'root',
+                    'password'      => '',
                     'dbname'        => 'test',
                     'driverOptions' => [
                         1002 => 'SET NAMES utf8',

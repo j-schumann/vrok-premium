@@ -18,17 +18,7 @@ class TestFeature implements FeatureInterface
         return $params['param'];
     }
 
-    public function getParameterFormElement(string $name): array
-    {
-        return [];
-    }
-
-    public function getParameterInputFilter(string $name): array
-    {
-        return [];
-    }
-
-    public function updateOwner(/*object*/ $owner, array $params)
+    public function updateOwner(object $owner, array $params)
     {
         // this allows us to simulate an error when assigning a feature
         if ($params['param'] == 66) {
@@ -40,7 +30,7 @@ class TestFeature implements FeatureInterface
             throw new \RuntimeException('As you wish!');
         }
 
-        if (! $params['active']) {
+        if (!$params['active']) {
             $owner->setDisplayName('inactive');
             return;
         }

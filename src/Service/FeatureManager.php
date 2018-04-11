@@ -87,7 +87,7 @@ class FeatureManager
      * @return bool
      * @throws DomainException when the feature is unknown
      */
-    public function isValidCandidate(string $feature, /*object*/ $owner) : bool
+    public function isValidCandidate(string $feature, object $owner) : bool
     {
         if (! isset($this->featureConfig[$feature])) {
             throw new DomainException("Unknown feature $feature!");
@@ -112,9 +112,9 @@ class FeatureManager
      */
     public function assignFeature(
         string $feature,
-        /*object*/ $owner,
+        object $owner,
         array $config,
-        /*object*/ $source
+        object $source
     ) : FeatureAssignment {
         if (! $this->isValidCandidate($feature, $owner)) {
             throw new DomainException(get_class($owner).
@@ -142,7 +142,7 @@ class FeatureManager
      * @param string $feature
      * @param object $owner
      */
-    public function updateFeatureOwner(string $feature, /*object*/ $owner)
+    public function updateFeatureOwner(string $feature, object $owner)
     {
         $params = $this->getParameters($feature, $owner);
         $strategy = $this->getFeatureStrategy($feature);
@@ -247,7 +247,7 @@ class FeatureManager
     public function getParameter(
         string $feature,
         string $param,
-        /*object*/ $owner = null
+        object $owner = null
     ) {
         $params = $this->getParameters($feature, $owner);
         if (! isset($params[$param])) {
@@ -268,7 +268,7 @@ class FeatureManager
      * @param object $owner
      * @return array
      */
-    public function getParameters(string $feature, /*object*/ $owner = null) : array
+    public function getParameters(string $feature, object $owner = null) : array
     {
         $default = $this->getDefaultConfig($feature);
 
@@ -341,7 +341,7 @@ class FeatureManager
      * @param object $owner
      * @return bool
      */
-    public function featureIsActive(string $feature, /*object*/ $owner = null) : bool
+    public function featureIsActive(string $feature, object $owner = null) : bool
     {
         // If an owner is given and he has the feature assigned it is active for him.
         if ($owner && $this->getAssignmentByOwner($owner, $feature)) {
@@ -363,7 +363,7 @@ class FeatureManager
      * @param string $feature
      * @return array
      */
-    public function getAssignmentByOwner(/*object*/ $owner, string $feature) : ?FeatureAssignment
+    public function getAssignmentByOwner(object $owner, string $feature) : ?FeatureAssignment
     {
         $filterValues = $this->refHelper->getEntityFilterData(
             FeatureAssignment::class,
@@ -388,7 +388,7 @@ class FeatureManager
      * @param string $feature
      * @return array
      */
-    public function getAssignmentsByOwner(/*object*/ $owner, string $feature = null) : array
+    public function getAssignmentsByOwner(object $owner, string $feature = null) : array
     {
         $filterValues = $this->refHelper->getEntityFilterData(
             FeatureAssignment::class,

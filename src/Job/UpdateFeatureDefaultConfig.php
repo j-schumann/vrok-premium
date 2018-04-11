@@ -126,7 +126,7 @@ class UpdateFeatureDefaultConfig extends AbstractJob
      *
      * @param object $owner
      */
-    protected function updateOwner(/*object*/ $owner)
+    protected function updateOwner(object $owner)
     {
         $assignment = $this->featureManager->getAssignmentByOwner($owner, $this->feature);
         $strategy = $this->featureManager->getFeatureStrategy($this->feature);
@@ -190,7 +190,7 @@ class UpdateFeatureDefaultConfig extends AbstractJob
      * @param object $owner
      * @throws \Throwable
      */
-    public function doUpdate(/*object*/ $owner)
+    public function doUpdate(object $owner)
     {
         $em = $this->featureManager->getEntityManager();
         $oldTI = $em->getConnection()->getTransactionIsolation();

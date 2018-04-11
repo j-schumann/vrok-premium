@@ -19,6 +19,28 @@ trait FeatureTrait
     }
 
     /**
+     * Simple feature without parameters does not provide form elements.
+     *
+     * @param string $name
+     * @return array
+     */
+    public function getParameterFormElement(string $name): array
+    {
+        return [];
+    }
+
+    /**
+     * Simple feature without parameters does not provide input filters.
+     *
+     * @param string $name
+     * @return array
+     */
+    public function getParameterInputFilter(string $name): array
+    {
+        return [];
+    }
+
+    /**
      * Calculates the features rating for the given parameters.
      * Formula can differ for each feature and may depend on the value of a single
      * parameter or invert it for reversed sorting:
@@ -34,7 +56,7 @@ trait FeatureTrait
         return 0;
     }
 
-    public function updateOwner(/*object*/ $owner, array $params)
+    public function updateOwner(object $owner, array $params)
     {
         // simple features don't need to update any entity, e.g. if they only
         // give access to functionality
