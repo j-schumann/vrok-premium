@@ -31,7 +31,6 @@ install:
   - travis_retry composer install $COMPOSER_ARGS
   - composer info
   - cp test/TestConfig.travis.php test/TestConfig.local.php
-  - ./vendor/bin/doctrine-module orm:schema-tool:update --force
 
 script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage ; else composer test ; fi
