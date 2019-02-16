@@ -1,5 +1,19 @@
 <?php
 return [
+    'bjyauthorize' => [
+        'guards' => [
+            'BjyAuthorize\Guard\Controller' => [
+                [
+                    'controller' => 'Vrok\Premium\Controller\Index',
+                    'roles'      => ['admin'],
+                ],
+                [
+                    'controller' => 'Vrok\Premium\Controller\Feature',
+                    'roles'      => ['admin'],
+                ],
+            ],
+        ],
+    ],
     'doctrine' => [
         /*
          * SQLite fails with weird behaviour, reusing old records that were
@@ -35,6 +49,10 @@ return [
     ],
     'modules' => [
         'Zend\Router',
+        'Zend\Form',
+        'Zend\Mvc\Plugin\FlashMessenger', // for controller tests
+        'Zend\I18n', // for controller tests
+        'Zend\Mvc\I18n',
         'DoctrineModule',
         'DoctrineORMModule',
         'SlmQueue',
@@ -67,6 +85,18 @@ return [
             'VrokPremiumTest\Feature\TestFeature' => function ($sm) {
                 return new \VrokPremiumTest\Feature\TestFeature();
             },
+        ],
+    ],
+    'view_manager' => [
+        'exception_template' => 'error/index',
+        'layout'             => 'error/index',
+        'template_map'       => [
+            'error/403'   => __DIR__.'/view/error.phtml',
+            'error/404'   => __DIR__.'/view/error.phtml',
+            'error/index' => __DIR__.'/view/error.phtml',
+           ],
+        'template_path_stack' => [
+            __DIR__.'/view',
         ],
     ],
 ];

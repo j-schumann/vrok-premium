@@ -23,6 +23,8 @@ return [
     ],
     'modules' => [
         'Zend\Router',
+        'Zend\Mvc\Plugin\FlashMessenger', // for controller tests
+        'Zend\I18n', // for controller tests
         'DoctrineModule',
         'DoctrineORMModule',
         'SlmQueue',

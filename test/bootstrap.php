@@ -13,6 +13,7 @@ class Bootstrap
     protected static $serviceManager;
     protected static $config;
     protected static $bootstrap;
+    public static $application;
 
     public static function init()
     {
@@ -47,12 +48,16 @@ class Bootstrap
             ],
         ];
         $config = ArrayUtils::merge($baseConfig, $testConfig);
-
+        //\Doctrine\Common\Util\Debug::dump($config, 4);
         // ensure Module::onBootstrap is called
         $app = Application::init($config);
 
         static::$serviceManager = $app->getServiceManager();
+        //\Doctrine\Common\Util\Debug::dump(static::$serviceManager->get('config'), 4);
+        //\Doctrine\Common\Util\Debug::dump(static::$serviceManager->get('Applicationonfig'), 4);
+        //exit;
         static::$config         = $config;
+        static::$application = $app;
 
         static::primeDatabase();
     }
