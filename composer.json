@@ -14,7 +14,7 @@
     },
     "require-dev": {
         "kokspflanze/bjy-authorize": "~1.6",
-        "phpunit/PHPUnit": "^6.3.1",
+        "phpunit/phpunit": "^6.3.1",
         "slm/queue-doctrine": "^0.6.1",
         "zendframework/zend-coding-standard": "~1.0.0",
         "zendframework/zend-test": "~3.2.0"
